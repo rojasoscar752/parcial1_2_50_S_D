@@ -25,3 +25,10 @@ La persistencia que se va a utilizar en tese sistema del parcial es en disco deb
 Comando para ejecutar 
 docker compose up --build
 
+Para acceder al panel de rabbitmq
+http://localhost:15672/
+
+usuario:oscar
+contraseña:mipassword123
+
+curl -F 'image=@ ruta de la imagen' http://localhost:3000/upload
