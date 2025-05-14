@@ -21,3 +21,7 @@ Estrategia de manejo de errores y reintentos
 Opciones de persistencia (disco o. memoria) y su relación con la
 consistencia
 La persistencia que se va a utilizar en tese sistema del parcial es en disco debido a que esto nos ayuda a guardar el estado de las imagenes en dado caso que un contenedor se reincie, además de que cumple con lo mencionado anteriormente que es la tolerancia a fallos debido a que si un worker se cae otro lo reemplaza para seguir con su tarea 
+
+Comando para ejecutar 
+docker compose up --build
+
