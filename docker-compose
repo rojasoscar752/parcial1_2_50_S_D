@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api
+    volumes:
+      - ./data:/data
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbitmq
+
+  resize_worker:
+    build:
+      context: .
+    working_dir: /app
+    command: node workers/resize_Worker.js
+    volumes:
+      - ./data:/data
+    depends_on:
+      - rabbitmq
+
+  watermark_worker:
+    build:
+      context: .
+    working_dir: /app
+    command: node workers/water_mark_Worker.js
+    volumes:
+      - ./data:/data
+    depends_on:
+      - rabbitmq
+
+  detect_worker:
+    build:
+      context: .
+    working_dir: /app
+    command: node workers/detect_Worker.js
+    volumes:
+      - ./data:/data
+    depends_on:
+      - rabbitmq
+
+  publisher:
+    build:
+      context: .
+    working_dir: /app
+    command: node foto_publisher/publisher_notify.js
+    volumes:
+      - ./data:/data
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"   
